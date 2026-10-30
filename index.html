@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fazliddin Calculator</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      background: linear-gradient(135deg, #101827, #243b55);
+      font-family: Arial, sans-serif; color: #172033; padding: 20px;
+    }
+    .card {
+      width: 100%; max-width: 360px; background: white; padding: 26px;
+      border-radius: 20px; box-shadow: 0 16px 40px #0005; text-align: center;
+    }
+    h1 { margin: 0 0 22px; font-size: 25px; color: #183153; }
+    input {
+      width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #ccd4df;
+      border-radius: 10px; font-size: 18px;
+    }
+    .buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+    button {
+      padding: 14px 0; border: 0; border-radius: 10px; background: #2563eb;
+      color: white; font-size: 22px; cursor: pointer;
+    }
+    button:active { transform: scale(.97); }
+    #result { margin-top: 20px; font-size: 20px; font-weight: bold; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>FAZLIDDIN CALCULATOR</h1>
+    <input id="a" type="number" placeholder="1-sonni kiriting">
+    <input id="b" type="number" placeholder="2-sonni kiriting">
+    <div class="buttons">
+      <button onclick="calc('+')">+</button>
+      <button onclick="calc('-')">−</button>
+      <button onclick="calc('*')">×</button>
+      <button onclick="calc('/')">÷</button>
+    </div>
+    <div id="result">Natija: —</div>
+  </main>
+  <script>
+    function calc(op) {
+      const a = Number(document.getElementById('a').value);
+      const b = Number(document.getElementById('b').value);
+      if (document.getElementById('a').value === '' || document.getElementById('b').value === '') {
+        document.getElementById('result').textContent = 'Ikkala sonni ham kiriting!';
+        return;
+      }
+      if (op === '/' && b === 0) {
+        document.getElementById('result').textContent = 'Nolga bo‘lish mumkin emas!';
+        return;
+      }
+      let r = op === '+' ? a + b : op === '-' ? a - b : op === '*' ? a * b : a / b;
+      document.getElementById('result').textContent = 'Natija: ' + r;
+    }
+  </script>
+</body>
+</html>
